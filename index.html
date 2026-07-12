@@ -29,7 +29,6 @@
             align-items: center;
         }
 
-        /* --- Floating Hearts Background --- */
         .bg-hearts {
             position: absolute;
             top: 0;
@@ -54,13 +53,12 @@
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- Screens Structure --- */
         .container {
             position: relative;
             z-index: 2;
             width: 90%;
             max-width: 450px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 20px;
@@ -71,9 +69,8 @@
 
         .hidden { display: none !important; }
 
-        /* --- Password Screen --- */
         h2 { color: var(--dark-pink); margin-bottom: 20px; font-size: 1.8rem; }
-        input[type="password"] {
+        input {
             width: 100%;
             padding: 12px;
             border: 2px solid #ffb3c1;
@@ -84,169 +81,164 @@
             margin-bottom: 15px;
             transition: 0.3s;
         }
-        input[type="password"]:focus { border-color: var(--primary-pink); }
+        input:focus { border-color: var(--primary-pink); }
+        
         button {
-            background-color: var(--primary-pink);
+            background: var(--primary-pink);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 12px 30px;
             font-size: 1rem;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
-            width: 100%;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
         }
-        button:hover { background-color: var(--dark-pink); transform: translateY(-2px); }
-        .error-msg { color: var(--dark-pink); font-size: 0.9rem; margin-top: 10px; font-weight: bold; }
+        button:hover { background: var(--dark-pink); }
 
-        /* --- Main Dashboard & Tabs --- */
-        .tabs { display: flex; margin-bottom: 20px; gap: 10px; }
-        .tab-btn { background: #ffe5ec; color: var(--dark-pink); border-radius: 15px; padding: 10px; border: none; flex: 1; cursor: pointer;}
-        .tab-btn.active { background: var(--primary-pink); color: white; }
-
-        /* --- Chat UI --- */
         .chat-box {
             height: 300px;
             border: 1px solid #ffe5ec;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.6);
+            background: white;
+            margin-bottom: 15px;
             padding: 15px;
             overflow-y: auto;
-            text-align: left;
-            margin-bottom: 15px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        .message { max-width: 80%; padding: 10px 14px; border-radius: 15px; font-size: 0.95rem; }
-        .msg-left { background: #f0f0f0; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .msg-right { background: var(--primary-pink); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .chat-input-area { display: flex; gap: 8px; }
-        .chat-input-area input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ffb3c1; outline: none; }
-        .chat-input-area button { width: auto; padding: 10px 20px; }
 
-        /* --- Gifts Reward Area --- */
-        .gift-container { display: flex; flex-direction: column; gap: 15px; max-height: 350px; overflow-y: auto; }
-        .gift-card {
-            background: white;
-            padding: 15px;
+        .message {
+            max-width: 75%;
+            padding: 10px 15px;
             border-radius: 15px;
-            border: 1px dashed var(--primary-pink);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            word-wrap: break-word;
         }
-        .gift-info h4 { color: var(--dark-pink); text-align: left; }
-        .gift-info p { font-size: 0.85rem; color: #888; text-align: left; }
-        .claim-btn { width: auto; padding: 6px 12px; font-size: 0.85rem; background: #2a9d8f; }
-        .claim-btn.unlocked { background: #6c757d; cursor: not-allowed; }
+        .msg-left { background: #f0f0f0; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg-right { background: #ffe5ec; color: var(--dark-pink); align-self: flex-end; border-bottom-right-radius: 2px; }
+
+        .input-area { display: flex; gap: 10px; }
+        .input-area input { margin-bottom: 0; text-align: left; padding-left: 20px; }
+
+        .tabs { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; border-bottom: 2px solid #ffe5ec; padding-bottom: 10px; }
+        .tab-btn { background: none; color: #aaa; box-shadow: none; padding: 5px 10px; font-size: 1.1rem; border-radius: 0; }
+        .tab-btn.active { color: var(--dark-pink); border-bottom: 3px solid var(--dark-pink); }
+        .tab-btn:hover { background: none; color: var(--primary-pink); }
+
+        .gift-card {
+            background: linear-gradient(135deg, #ffe5ec, #ffb3c1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+        .gift-card h3 { color: var(--dark-pink); margin-bottom: 5px; }
+        .gift-card p { font-size: 0.9rem; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
-    <!-- Floating Background Hearts -->
-    <div class="bg-hearts" id="heartBg"></div>
+    <div class="bg-hearts" id="heartsBg"></div>
 
-    <!-- MAIN CONTAINER -->
-    <div class="container">
-        
-        <!-- 1. LOCK SCREEN -->
-        <div id="lockScreen">
-            <h2>💖 Our Safe Space 💖</h2>
-            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Enter our secret password to enter</p>
-            <input type="password" id="passwordInput" placeholder="Enter password...">
-            <button onclick="checkPassword()">Unlock My Heart</button>
-            <p id="errorLog" class="error-msg hidden">Wrong password, try again love! 🥺</p>
+    <!-- 1. LOCKSCREEN SCREEN -->
+    <div class="container" id="lockScreen">
+        <h2>🔒 Private Space</h2>
+        <input type="password" id="passwordInput" placeholder="Enter Our Special Secret Password">
+        <button onclick="checkPassword()">Unlock</button>
+    </div>
+
+    <!-- 2. NICKNAME SETUP SCREEN -->
+    <div class="container hidden" id="profileScreen">
+        <h2>✨ Set Your Profile</h2>
+        <input type="text" id="nicknameInput" placeholder="Enter Your Nickname">
+        <button onclick="saveProfile()">Enter Room</button>
+    </div>
+
+    <!-- 3. MAIN APPLICATION INTERFACE -->
+    <div class="container hidden" id="mainApp">
+        <div class="tabs">
+            <button class="tab-btn active" id="btnChat" onclick="switchTab('chat')">💬 Chat</button>
+            <button class="tab-btn" id="btnGifts" onclick="switchTab('gifts')">🎁 Gifts</button>
         </div>
 
-        <!-- 2. MAIN APP SCREEN (Hidden by default) -->
-        <div id="mainApp" class="hidden">
-            <div class="tabs">
-                <button class="tab-btn active" id="btnChat" onclick="switchTab('chat')">💬 Lovely Chat</button>
-                <button class="tab-btn" id="btnGifts" onclick="switchTab('gifts')">🎁 Love Rewards</button>
+        <!-- Chat View Area -->
+        <div id="chatView">
+            <div class="chat-box" id="chatBox"></div>
+            <div class="input-area">
+                <input type="text" id="chatInputField" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
             </div>
+        </div>
 
-            <!-- CHAT VIEW -->
-            <div id="chatView">
-                <div class="chat-box" id="chatBox">
-                    <div class="message msg-left">Hey love! Welcome to our private website. ❤️</div>
-                    <div class="message msg-right">Wow, you actually set this up for us! 🥺✨</div>
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="chatInputField" placeholder="Type a sweet message...">
-                    <button onclick="sendMessage()">Send</button>
-                </div>
+        <!-- Gifts/Coupons View Area -->
+        <div id="giftsView" class="hidden">
+            <div class="gift-card">
+                <h3>🍦 Free Ice Cream Date</h3>
+                <p>Valid anytime you crave something sweet.</p>
+                <button onclick="claimGift(this)">Claim Coupon ⚡</button>
             </div>
-
-            <!-- GIFTS VIEW -->
-            <div id="giftsView" class="hidden">
-                <h3 style="margin-bottom: 15px; color: var(--dark-pink);">Rewards For Our Efforts 🏆</h3>
-                <div class="gift-container">
-                    <!-- Gift 1 -->
-                    <div class="gift-card">
-                        <div class="gift-info">
-                            <h4>☕ Virtual Coffee Date</h4>
-                            <p>Unlocked for communicating perfectly today.</p>
-                        </div>
-                        <button class="claim-btn" onclick="claimGift(this)">Claim</button>
-                    </div>
-                    <!-- Gift 2 -->
-                    <div class="gift-card">
-                        <div class="gift-info">
-                            <h4>🎶 Custom Love Playlist</h4>
-                            <p>Reward for understanding during tough times.</p>
-                        </div>
-                        <button class="claim-btn" onclick="claimGift(this)">Claim</button>
-                    </div>
-                    <!-- Gift 3 -->
-                    <div class="gift-card">
-                        <div class="gift-info">
-                            <h4>🎟️ A Free Hug Pass</h4>
-                            <p>Redeemable immediately on our next meet!</p>
-                        </div>
-                        <button class="claim-btn" onclick="claimGift(this)">Claim</button>
-                    </div>
-                </div>
+            <div class="gift-card">
+                <h3>🎬 Movie Choice Pass</h3>
+                <p>You get to pick completely what we watch next.</p>
+                <button onclick="claimGift(this)">Claim Coupon ⚡</button>
             </div>
-
         </div>
     </div>
 
+    <!-- Firebase System Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <script>
-        // --- 1. Background Heart Generator ---
-        const heartBg = document.getElementById('heartBg');
-        const heartEmojis = ['❤️', '💖', '💝', '💕', '💗'];
-        
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
-            heart.style.fontSize = (Math.random() * 1.5 + 1) + "rem";
-            heartBg.appendChild(heart);
+        // Your Verified Live Realtime Database Credentials
+        const firebaseConfig = {
+            databaseURL: "https://our-space-97e7c-default-rtdb.firebaseio.com/"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-            setTimeout(() => { heart.remove(); }, 8000);
+        let userNickname = "";
+
+        // Background Hearts Generator
+        const bg = document.getElementById('heartsBg');
+        const hearts = ['❤️', '💖', '💝', '💕'];
+        for (let i = 0; i < 15; i++) {
+            let h = document.createElement('div');
+            h.classList.add('heart');
+            h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            h.style.left = Math.random() * 100 + '%';
+            h.style.animationDelay = Math.random() * 8 + 's';
+            h.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            bg.appendChild(h);
         }
-        setInterval(createHeart, 400);
 
-        // --- 2. Password Protection Logic ---
+        // --- 1. Security Lockscreen Logic ---
         function checkPassword() {
             const pin = document.getElementById('passwordInput').value;
-            const errorLog = document.getElementById('errorLog');
-            
-            if (pin.toLowerCase() === "iloveyou") {
+            if (pin === "0503") { 
                 document.getElementById('lockScreen').classList.add('hidden');
-                document.getElementById('mainApp').classList.remove('hidden');
+                document.getElementById('profileScreen').classList.remove('hidden');
             } else {
-                errorLog.classList.remove('hidden');
+                alert("Incorrect password! Try again ❤️");
             }
         }
 
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkPassword();
-        });
+        // --- 2. Identity Management Logic ---
+        function saveProfile() {
+            const name = document.getElementById('nicknameInput').value.trim();
+            if(name) {
+                userNickname = name;
+                document.getElementById('profileScreen').classList.add('hidden');
+                document.getElementById('mainApp').classList.remove('hidden');
+                listenForMessages();
+            } else {
+                alert("Please add a cute nickname!");
+            }
+        }
 
         // --- 3. Tab Switching Logic ---
         function switchTab(tabName) {
@@ -268,33 +260,53 @@
             }
         }
 
-        // --- 4. Simulated Chat Actions ---
-        let toggleSender = true;
+        // --- 4. Database Live Messaging Logic ---
         function sendMessage() {
             const input = document.getElementById('chatInputField');
-            const chatBox = document.getElementById('chatBox');
-            if (input.value.trim() === "") return;
+            const messageText = input.value.trim();
+            if (messageText === "") return;
 
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message');
-            msgDiv.classList.add(toggleSender ? 'msg-right' : 'msg-left'); 
-            msgDiv.innerText = input.value;
-            
-            chatBox.appendChild(msgDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-            
+            database.ref("messages").push({
+                sender: userNickname,
+                text: messageText,
+                timestamp: Date.now()
+            });
+
             input.value = "";
-            toggleSender = !toggleSender; 
         }
+
+        function listenForMessages() {
+            const chatBox = document.getElementById('chatBox');
+            database.ref("messages").on("child_added", (snapshot) => {
+                const data = snapshot.val();
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('message');
+                
+                if (data.sender === userNickname) {
+                    msgDiv.classList.add('msg-right');
+                    msgDiv.innerText = data.text;
+                } else {
+                    msgDiv.classList.add('msg-left');
+                    msgDiv.innerText = `${data.sender}: ${data.text}`;
+                }
+                
+                chatBox.appendChild(msgDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+
+        document.getElementById('chatInputField').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
 
         // --- 5. Gift Redemption System ---
         function claimGift(button) {
             button.innerText = "Claimed! 🎉";
             button.classList.add('unlocked');
             button.disabled = true;
-            alert("Reward Redeemed! Send a screenshot to your partner to cash it in! 😘");
+            alert("Reward Redeemed! Send a screenshot to your partner to cash it in! 😍");
         }
     </script>
 </body>
-  </html>
-  
+</html>
+
